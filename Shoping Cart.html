@@ -214,7 +214,7 @@ h2 {
 
   <div class="cart-footer">
     <div class="cart-buttons">
-      <a href="Home.php"><button>Cont Shopping</button></a>
+      <a href="index.html"><button>Cont Shopping</button></a>
     </div>
     <div class="checkout-section">
       <a href="Checkout.html"><button>CheckOut</button></a>
@@ -226,8 +226,8 @@ h2 {
 
   <script>
     const cartItems = [
-      { name: "Tea Cup", price: 2, size: "Medium", color: "Blue", quantity: 1, image: "Pics/cup-8735182.jpg" },
-      { name: "Basket", price: 2, size: "Medium", color: "Blue", quantity: 1, image: "Pics/basket-6947094.jpg" }
+      { name: "Tea Cup", price: 2, size: "Medium", color: "Blue", quantity: 1, image: "1748519340_tea-set-8022928_1920.jpg" },
+      { name: "Basket", price: 2, size: "Medium", color: "Blue", quantity: 1, image: "1751960331_basket-6947094.jpg" }
     ];
 
     const container = document.getElementById("cart-container");
@@ -281,7 +281,7 @@ h2 {
     function checkout() {
   alert("Thank you for your purchase!");
   localStorage.removeItem("cartItems");
-  window.location.href = "Home.html"; // Or thank-you page
+  window.location.href = "index.html"; // Or thank-you page
 }
 
 
