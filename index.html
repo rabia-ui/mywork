@@ -189,7 +189,7 @@
             margin-top: 1rem;
         }
 
-        /* Additional mobile tweaks */
+        /* Mobile-specific tweaks */
         @media screen and (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -209,6 +209,10 @@
             .sidebar ul {
                 flex-wrap: nowrap;
                 overflow-x: auto;
+            }
+
+            .sidebar ul li a {
+                min-width: 150px; /* 🚀 wider on mobile for easier tap */
             }
 
             .box {
