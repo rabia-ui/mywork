@@ -84,6 +84,7 @@
             url('background.jpg');
             background-repeat: no-repeat;
             background-position: center;
+            background-size: cover;
             z-index: -5;
         }
 
@@ -206,13 +207,17 @@
                 overflow-x: auto;
             }
 
+            #Welcome-container {
+                height: 35rem; /* ⬅️ taller on mobile */
+            }
+
             .sidebar ul {
                 flex-wrap: nowrap;
                 overflow-x: auto;
             }
 
             .sidebar ul li a {
-                min-width: 150px; /* 🚀 wider on mobile for easier tap */
+                min-width: 180px;
             }
 
             .box {
@@ -271,15 +276,4 @@
                 <div class="pic-of-the-product" style="background-image: url('product1.jpg');">Product</div>
                 <p class="name-of-the-product">Product Name</p>
                 <p class="price-of-product">PKR 1000</p>
-                <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
-            <!-- More products... -->
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 HunarGhar. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
+                <b
