@@ -1,229 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Upload Product</title>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    :root {
-      --primary-green: #00b894;
-      --light-green: #dffaf4;
-      --dark-text: #2d3436;
-      --light-gray: #f2f2f2;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HunarGhar - Handmade Marketplace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      height: 90vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                  url('background.jpg') no-repeat center center/cover;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            padding: 0.3rem;
+        }
 
-    .wrapper {
-      display: flex;
-      background-color: #fff;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      width: 90%;
-      max-width: 1100px;
-      height: auto;
-      min-height: 85vh;
-    }
+        body {
+            font-family: Arial, sans-serif;
+        }
 
-    .logo-side {
-      background: #333;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-      flex: 1;
-      color: white;
-    }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 2rem;
+            background-color: white;
+        }
 
-    .logo-side img {
-      width: 30rem;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
+        .icon-box {
+            width: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 2rem;
+            background: white;
+        }
 
-    .container {
-      width: 50%;
-      padding: 40px;
-      text-align: center;
-    }
+        .icons {
+            font-size: 1.3rem;
+            color: black;
+            margin: 0 5px;
+        }
 
-    h2 {
-      margin-bottom: 25px;
-      color: #333;
-      font-weight: 600;
-    }
+        .icons:hover {
+            color: #4d4c4c;
+            transition-duration: 0.4s;
+        }
 
-    .input-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
+        .cart-count {
+            background-color: #7B2D26;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.8rem;
+            margin-left: 4px;
+        }
 
-    .input-group label {
-      font-size: 14px;
-      color: #333;
-      margin-bottom: 6px;
-      display: block;
-    }
+        header nav ul {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+        }
 
-    .input-group input,
-    .input-group select {
-      width: 100%;
-      padding: 12px;
-      font-size: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      transition: 0.3s;
-      background-color: #f9f9f9;
-    }
+        header nav ul li {
+            flex: 0 0 auto;
+            margin: 0 0.5rem;
+        }
 
-    .input-group input:focus,
-    .input-group select:focus {
-      border-color: var(--primary-green);
-      outline: none;
-      box-shadow: 0 0 5px var(--primary-green);
-      background-color: white;
-    }
+        header nav ul li a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: black;
+        }
 
-    .btn {
-      width: 100%;
-      padding: 12px;
-      background: #333;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        #Welcome-container {
+            border-bottom: 1px solid rgba(37, 36, 36, 0.774);
+            width: 100%;
+            margin: auto;
+            height: 23rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url('background.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            z-index: -5;
+        }
 
-    .btn:hover {
-      background: #913d35;
-    }
+        #Welcome-container img {
+            width: 25rem;
+            max-width: 90%;
+        }
 
-    p {
-      margin-top: 15px;
-      font-size: 14px;
-      color: var(--dark-text);
-    }
+        .sidebar {
+            width: 100%;
+            padding: 1rem;
+            display: flex;
+            height: 4rem;
+            overflow-x: auto;
+        }
 
-    p a {
-      color: #333;
-      text-decoration: none;
-      font-weight: bold;
-    }
+        .sidebar ul {
+            list-style: none;
+            display: flex;
+        }
 
-    p a:hover {
-      text-decoration: underline;
-    }
+        .sidebar ul li a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: black;
+            border-right: 1px solid grey;
+            padding: 0.5rem;
+            display: block;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            white-space: nowrap;
+        }
 
-    /* improved mobile responsiveness only */
-    @media (max-width: 768px) {
-      body {
-        height: auto;
-        padding: 20px 0;
-      }
+        .sidebar ul li a:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
 
-      .wrapper {
-        flex-direction: column;
-        width: 95%;
-        min-height: auto;
-      }
+        #container {
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 1rem;
+            padding: 1rem;
+            flex-grow: 1;
+        }
 
-      .logo-side {
-        padding: 20px;
-        width: 100%;
-      }
+        .box {
+            margin-inline: 0.3rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
 
-      .logo-side img {
-        width: 80%;
-        max-width: 280px;
-      }
+        .box:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
 
-      .container {
-        width: 100%;
-        padding: 25px 15px;
-      }
+        .name-of-the-product, .price-of-product {
+            padding-left: 0.2rem;
+            margin: 0;
+            font-size: 0.9rem;
+            background-color: white;
+            height: 2rem;
+        }
 
-      h2 {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
-      }
+        .pic-of-the-product {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 14.9rem;
+            height: 14.9rem;
+            border-radius: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
 
-      .input-group input,
-      .input-group select {
-        padding: 14px;
-        font-size: 16px;
-      }
+        .add-to-cart-btn {
+            margin: 0.5rem 0;
+            padding: 0.2rem 0.4rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background-color 0.3s ease;
+        }
 
-      .btn {
-        padding: 14px;
-        font-size: 17px;
-      }
+        .add-to-cart-btn:hover {
+            background: #8f3c34;
+        }
 
-      p {
-        font-size: 15px;
-      }
-    }
-  </style>
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #333;
+            color: white;
+            margin-top: 1rem;
+        }
+
+        /* improved mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .icon-box {
+                width: 100%;
+                justify-content: center;
+                padding: 0.5rem 0;
+            }
+
+            header nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+                overflow-x: visible;
+                padding: 0.5rem 0;
+            }
+
+            header nav ul li {
+                margin: 0.5rem;
+            }
+
+            #Welcome-container {
+                height: auto;
+                padding: 2rem 1rem;
+            }
+
+            #Welcome-container img {
+                width: 90%;
+                max-width: 22rem;
+            }
+
+            .sidebar {
+                height: auto;
+                padding: 0.5rem;
+            }
+
+            .sidebar ul {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            .sidebar ul li a {
+                min-width: 180px;
+                padding: 0.7rem 1rem;
+                font-size: 1.1rem;
+            }
+
+            .box {
+                width: 90%;
+                margin: 0.8rem auto;
+            }
+
+            .pic-of-the-product {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                border-radius: 10%;
+            }
+
+            .add-to-cart-btn {
+                padding: 0.6rem 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="logo-side">
-      <img src="T-removebg-preview.png" alt="Takhleeq Logo">
+
+    <header>
+        <div class="icon-box">
+            <a class="icons" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="icons" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="icons" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="icons" href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="signup.html">SignUp</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Addproduct.html">Add product</a></li>
+                <li><a href="Shoping Cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="Welcome-container">
+        <img src="T-removebg-preview.png" alt="Welcome Image"/>
+    </section>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="?category=Pottery%20%26%20Ceramics">Pottery & Ceramics</a></li>
+                <li><a href="?category=Handwoven Rugs">Handwoven Rugs</a></li>
+                <li><a href="?category=Peshawari Chappal">Peshawari Chappal</a></li>
+                <li><a href="?category=Ajrak%20%26%20Block Printing">Ajrak & Block Printing</a></li>
+                <li><a href="?category=Handmade Jewelry">Handmade Jewelry</a></li>
+                <li><a href="?category=Truck Art Items">Truck Art Items</a></li>
+                <li><a href="?category=Leather Goods">Leather Goods</a></li>
+                <li><a href="?category=Calligraphy Art">Calligraphy Art</a></li>
+            </ul>
+        </aside>
+
+        <div id="container">
+            <div class="box">
+                <div class="pic-of-the-product" style="background-image: url('product1.jpg');">Product</div>
+                <p class="name-of-the-product">Product Name</p>
+                <p class="price-of-product">PKR 1000</p>
+                <button class="add-to-cart-btn">Add to Cart</button>
+            </div>
+            <!-- More products... -->
+        </div>
     </div>
 
-    <div class="container">
-      <h2>Upload Product</h2>
-      <form action="AddProduct.php" method="POST" enctype="multipart/form-data">
-        <div class="input-group">
-          <label for="name">Product Name</label>
-          <input type="text" id="name" name="name" placeholder="Product name" required>
-        </div>
-        <div class="input-group">
-          <label for="category">Category</label>
-          <select id="category" name="category" required>
-            <option value="" disabled selected>Select Category</option>
-            <option value="Pottery & Ceramics">Pottery & Ceramics</option>
-            <option value="Handwoven Rugs">Handwoven Rugs</option>
-            <option value="Peshawari Chappal">Peshawari Chappal</option>
-            <option value="Ajrak & Block Printing">Ajrak & Block Printing</option>
-            <option value="Handmade Jewelry">Handmade Jewelry</option>
-            <option value="Truck Art Items">Truck Art Items</option>
-            <option value="Leather Goods">Leather Goods</option>
-            <option value="Calligraphy Art">Calligraphy Art</option>
-          </select>
-        </div>
-        <div class="input-group">
-          <label for="price">Price</label>
-          <input type="number" id="price" name="price" placeholder="Price in USD" required>
-        </div>
-        <div class="input-group">
-          <label for="description">Description</label>
-          <input type="text" id="description" name="description" placeholder="Short description" required>
-        </div>
-        <div class="input-group">
-          <label for="image">Product Image</label>
-          <input type="file" id="image" name="image" accept="image/*" required>
-        </div>
-        <button class="btn" type="submit">Upload Product</button>
-        <p><a href="index.html">Go back to Home</a></p>
-      </form>
-    </div>
-  </div>
+    <footer>
+        <p>&copy; 2025 HunarGhar. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
