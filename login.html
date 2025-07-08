@@ -20,15 +20,10 @@
       height: 100vh;
       display: flex;
       justify-content: center;
-      
       align-items: center;
       margin: 0;
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-            url('background.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-           z-index: -5;
-           opacity: +10;
+                  url('background.jpg') no-repeat center center/cover;
     }
 
     .wrapper {
@@ -38,12 +33,10 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       width: 1100px;
-      /* width: 100%; */
     }
 
     .logo-side {
-      background: var(--primary-green);
-      background-color: #333;
+      background: #333;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -54,25 +47,20 @@
     }
 
     .logo-side img {
-      /* max-width: 100%; */
-      width:30rem;
+      width: 30rem;
       height: auto;
       border-radius: 8px;
       margin-bottom: 20px;
     }
 
-    
-
     .container {
-      /* flex: 1; */
-      width:50%;
+      width: 50%;
       padding: 40px;
       text-align: center;
     }
 
     h2 {
       margin-bottom: 25px;
-      color: var(--dark-text);
       color: #333;
       font-weight: 600;
     }
@@ -111,8 +99,7 @@
     .btn {
       width: 100%;
       padding: 12px;
-      background: var(--primary-green);
-      background-color: #333;
+      background: #333;
       color: white;
       border: none;
       border-radius: 6px;
@@ -133,7 +120,6 @@
     }
 
     p a {
-      color: var(--primary-green);
       color: #333;
       text-decoration: none;
       font-weight: bold;
@@ -143,21 +129,56 @@
       text-decoration: underline;
     }
 
+    /* improved mobile responsiveness only */
     @media (max-width: 768px) {
+      body {
+        height: auto;
+        padding: 20px 0;
+      }
+
       .wrapper {
         flex-direction: column;
+        width: 90%;
       }
 
       .logo-side {
+        width: 100%;
         padding: 20px;
       }
 
+      .logo-side img {
+        width: 80%;
+        max-width: 250px;
+      }
+
       .container {
-        padding: 30px 20px;
+        width: 100%;
+        padding: 25px 15px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      .input-group input,
+      .input-group select {
+        padding: 14px;
+        font-size: 17px;
+      }
+
+      .btn {
+        padding: 15px;
+        font-size: 18px;
+      }
+
+      p {
+        font-size: 15px;
       }
     }
   </style>
 </head>
+
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById("loginForm");
@@ -191,12 +212,10 @@
 
       if (!valid) return;
 
-      // Check stored credentials
       const storedEmail = localStorage.getItem('userEmail');
       const storedPassword = localStorage.getItem('userPassword');
 
       if (email === storedEmail && password === storedPassword) {
-        // Login success
         Swal.fire("Success", "Login successful!", "success").then(() => {
           window.location.href = "Home.php";
         });
@@ -222,9 +241,6 @@
   });
 </script>
 
-
-
-
 <body>
   <div class="wrapper">
     <div class="logo-side">
@@ -234,7 +250,6 @@
     <div class="container">
       <h2>Login</h2>
       <form id="loginForm">
-
         <div class="input-group">
           <label for="userType">Login as</label>
           <select id="userType" required>
@@ -256,7 +271,5 @@
       </form>
     </div>
   </div>
- 
-
 </body>
 </html>
