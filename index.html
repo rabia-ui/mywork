@@ -1,279 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>HunarGhar - Handmade Marketplace</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HunarGhar - Handmade Marketplace</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            padding: 0.3rem;
-        }
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        padding: 0.3rem;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-        }
+    body {
+        font-family: Arial, sans-serif;
+    }
 
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 2rem;
+        background-color: white;
+    }
+
+    .icon-box {
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 2rem;
+        background: white;
+    }
+
+    .icons {
+        font-size: 1.3rem;
+        color: black;
+        margin: 0 5px;
+    }
+
+    .icons:hover {
+        color: #4d4c4c;
+        transition-duration: 0.4s;
+    }
+
+    .cart-count {
+        background-color: #7B2D26;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 0.8rem;
+        margin-left: 4px;
+    }
+
+    header nav ul {
+        display: flex;
+        list-style: none;
+        overflow-x: auto;
+    }
+
+    header nav ul li {
+        flex: 0 0 auto;
+        margin: 0 0.5rem;
+    }
+
+    header nav ul li a {
+        text-decoration: none;
+        font-size: 1rem;
+        color: black;
+    }
+
+    #Welcome-container {
+        border-bottom: 1px solid rgba(37, 36, 36, 0.774);
+        width: 100%;
+        margin: auto;
+        height: 23rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('background.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        z-index: -5;
+    }
+
+    #Welcome-container img {
+        width: 25rem;
+        max-width: 90%;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 1rem;
+        display: flex;
+        height: 4rem;
+        overflow-x: auto;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        display: flex;
+    }
+
+    .sidebar ul li a {
+        text-decoration: none;
+        font-size: 1rem;
+        color: black;
+        border-right: 1px solid grey;
+        padding: 0.5rem 1rem;
+        display: block;
+        border-radius: 5px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .sidebar ul li a:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    #container {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 1rem;
+        padding: 1rem;
+    }
+
+    .box {
+        margin-inline: 0.3rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .box:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .name-of-the-product, .price-of-product {
+        padding-left: 0.2rem;
+        margin: 0;
+        font-size: 0.9rem;
+        background-color: white;
+        height: 2rem;
+    }
+
+    .pic-of-the-product {
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 14.9rem;
+        height: 14.9rem;
+        border-radius: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: white;
+    }
+
+    .add-to-cart-btn {
+        margin: 0.5rem 0;
+        padding: 0.2rem 0.4rem;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .add-to-cart-btn:hover {
+        background: #8f3c34;
+    }
+
+    footer {
+        text-align: center;
+        padding: 1rem;
+        background: #333;
+        color: white;
+        margin-top: 1rem;
+    }
+
+    /* Mobile optimization */
+    @media screen and (max-width: 768px) {
         header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.5rem 2rem;
-            background-color: white;
+            flex-direction: column;
+            padding: 1rem;
         }
 
         .icon-box {
-            width: 30%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.5rem 2rem;
-            background: white;
-        }
-
-        .icons {
-            font-size: 1.3rem;
-            color: black;
-            margin: 0 5px;
-        }
-
-        .icons:hover {
-            color: #4d4c4c;
-            transition-duration: 0.4s;
-        }
-
-        .cart-count {
-            background-color: #7B2D26;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 6px;
-            font-size: 0.8rem;
-            margin-left: 4px;
+            width: 100%;
+            justify-content: center;
+            padding: 0.5rem 0;
         }
 
         header nav ul {
-            display: flex;
-            list-style: none;
-            overflow-x: auto;
+            justify-content: center;
+            flex-wrap: wrap;
+            overflow-x: visible;
+            padding: 0.5rem 0;
         }
 
         header nav ul li {
-            flex: 0 0 auto;
-            margin: 0 0.5rem;
-        }
-
-        header nav ul li a {
-            text-decoration: none;
-            font-size: 1rem;
-            color: black;
+            margin: 0.5rem;
         }
 
         #Welcome-container {
-            border-bottom: 1px solid rgba(37, 36, 36, 0.774);
-            width: 100%;
-            margin: auto;
-            height: 23rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-            url('background.jpg');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            z-index: -5;
-        }
-
-        #Welcome-container img {
-            width: 25rem;
-            max-width: 90%;
+            height: 38rem; /* taller on mobile */
         }
 
         .sidebar {
-            width: 100%;
-            padding: 1rem;
-            display: flex;
-            height: 4rem;
-            overflow-x: auto;
+            height: auto;
+            padding: 0.5rem;
         }
 
         .sidebar ul {
-            list-style: none;
-            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
         }
 
         .sidebar ul li a {
-            text-decoration: none;
-            font-size: 1rem;
-            color: black;
-            border-right: 1px solid grey;
-            padding: 0.5rem;
-            display: block;
-            border-radius: 5px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .sidebar ul li a:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        #container {
-            height: auto;
-            display: flex;
-            flex-wrap: wrap;
-            row-gap: 1rem;
-            padding: 1rem;
-            flex-grow: 1;
+            min-width: 200px; /* easier to tap */
         }
 
         .box {
-            margin-inline: 0.3rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-
-        .box:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .name-of-the-product, .price-of-product {
-            padding-left: 0.2rem;
-            margin: 0;
-            font-size: 0.9rem;
-            background-color: white;
-            height: 2rem;
+            width: 90%;
+            margin: 0.5rem auto;
         }
 
         .pic-of-the-product {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 14.9rem;
-            height: 14.9rem;
-            border-radius: 10%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
+            width: 100%;
+            height: auto;
         }
-
-        .add-to-cart-btn {
-            margin: 0.5rem 0;
-            padding: 0.2rem 0.4rem;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: background-color 0.3s ease;
-        }
-
-        .add-to-cart-btn:hover {
-            background: #8f3c34;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #333;
-            color: white;
-            margin-top: 1rem;
-        }
-
-        /* Mobile-specific tweaks */
-        @media screen and (max-width: 768px) {
-            header {
-                flex-direction: column;
-            }
-
-            .icon-box {
-                width: 100%;
-                justify-content: center;
-            }
-
-            header nav ul {
-                flex-direction: row;
-                justify-content: center;
-                overflow-x: auto;
-            }
-
-            #Welcome-container {
-                height: 35rem; /* ⬅️ taller on mobile */
-            }
-
-            .sidebar ul {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-            }
-
-            .sidebar ul li a {
-                min-width: 180px;
-            }
-
-            .box {
-                width: 90%;
-                margin: 0.5rem auto;
-            }
-
-            .pic-of-the-product {
-                width: 100%;
-                height: auto;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="icon-box">
-            <a class="icons" href="#"><i class="fab fa-facebook-f"></i></a>
-            <a class="icons" href="#"><i class="fab fa-twitter"></i></a>
-            <a class="icons" href="#"><i class="fab fa-instagram"></i></a>
-            <a class="icons" href="#"><i class="fab fa-linkedin-in"></i></a>
+<header>
+    <div class="icon-box">
+        <a class="icons" href="#"><i class="fab fa-facebook-f"></i></a>
+        <a class="icons" href="#"><i class="fab fa-twitter"></i></a>
+        <a class="icons" href="#"><i class="fab fa-instagram"></i></a>
+        <a class="icons" href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">SignUp</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="Addproduct.html">Add product</a></li>
+            <li><a href="Shoping Cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="Welcome-container">
+    <img src="T-removebg-preview.png" alt="Welcome Image"/>
+</section>
+
+<div class="main-container">
+    <aside class="sidebar">
+        <ul>
+            <li><a href="?category=Pottery%20%26%20Ceramics">Pottery & Ceramics</a></li>
+            <li><a href="?category=Handwoven Rugs">Handwoven Rugs</a></li>
+            <li><a href="?category=Peshawari Chappal">Peshawari Chappal</a></li>
+            <li><a href="?category=Ajrak%20%26%20Block Printing">Ajrak & Block Printing</a></li>
+            <li><a href="?category=Handmade Jewelry">Handmade Jewelry</a></li>
+            <li><a href="?category=Truck Art Items">Truck Art Items</a></li>
+            <li><a href="?category=Leather Goods">Leather Goods</a></li>
+            <li><a href="?category=Calligraphy Art">Calligraphy Art</a></li>
+        </ul>
+    </aside>
+
+    <div id="container">
+        <div class="box">
+            <div class="pic-of-the-product" style="background-image: url('product1.jpg');">Product</div>
+            <p class="name-of-the-product">Product Name</p>
+            <p class="price-of-product">PKR 1000</p>
+            <button class="add-to-cart-btn">Add to Cart</button>
         </div>
-        <nav>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="signup.html">SignUp</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="Addproduct.html">Add product</a></li>
-                <li><a href="Shoping Cart.html"><i class="fas fa-shopping-cart"></i> <span class="cart-count">0</span></a></li>
-            </ul>
-        </nav>
-    </header>
+        <!-- More products -->
+    </div>
+</div>
 
-    <section id="Welcome-container">
-        <img src="T-removebg-preview.png" alt="Welcome Image"/>
-    </section>
+<footer>
+    <p>&copy; 2025 HunarGhar. All rights reserved.</p>
+</footer>
 
-    <div class="main-container">
-        <aside class="sidebar">
-            <ul>
-                <li><a href="?category=Pottery%20%26%20Ceramics">Pottery & Ceramics</a></li>
-                <li><a href="?category=Handwoven Rugs">Handwoven Rugs</a></li>
-                <li><a href="?category=Peshawari Chappal">Peshawari Chappal</a></li>
-                <li><a href="?category=Ajrak%20%26%20Block Printing">Ajrak & Block Printing</a></li>
-                <li><a href="?category=Handmade Jewelry">Handmade Jewelry</a></li>
-                <li><a href="?category=Truck Art Items">Truck Art Items</a></li>
-                <li><a href="?category=Leather Goods">Leather Goods</a></li>
-                <li><a href="?category=Calligraphy Art">Calligraphy Art</a></li>
-            </ul>
-        </aside>
-
-        <div id="container">
-            <div class="box">
-                <div class="pic-of-the-product" style="background-image: url('product1.jpg');">Product</div>
-                <p class="name-of-the-product">Product Name</p>
-                <p class="price-of-product">PKR 1000</p>
-                <b
+</body>
+</html>
