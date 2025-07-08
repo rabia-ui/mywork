@@ -7,8 +7,9 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     :root {
-      --primary-green: #28a745;
-      --dark-text: #333;
+      --primary-green: #00b894;
+      --dark-text: #2d3436;
+      --light-gray: #f2f2f2;
     }
 
     body {
@@ -16,10 +17,10 @@
       background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
                   url('background.jpg') no-repeat center center/cover;
       min-height: 100vh;
-      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
+      margin: 0;
       padding: 0;
     }
 
@@ -34,7 +35,7 @@
     }
 
     .logo-side {
-      background-color: #333;
+      background: #333;
       flex: 1;
       display: flex;
       justify-content: center;
@@ -53,12 +54,12 @@
       width: 50%;
       padding: 40px;
       text-align: center;
-      background: #ffffff;
+      background: #fff;
     }
 
     h2 {
-      color: var(--dark-text);
       margin-bottom: 25px;
+      color: #333;
       font-weight: 600;
     }
 
@@ -69,7 +70,7 @@
 
     .input-group label {
       font-size: 14px;
-      color: var(--dark-text);
+      color: #333;
       margin-bottom: 6px;
       display: block;
     }
@@ -106,17 +107,17 @@
     }
 
     .btn:hover {
-      background: #218838;
+      background: #913d35;
     }
 
     p {
       margin-top: 15px;
       font-size: 14px;
-      color: var(--dark-text);
+      color: #333;
     }
 
     p a {
-      color: var(--dark-text);
+      color: #333;
       text-decoration: none;
       font-weight: bold;
     }
@@ -125,39 +126,35 @@
       text-decoration: underline;
     }
 
-    /* MOBILE: Make look like your contact page */
+    /* Mobile style to look like contact form */
     @media (max-width: 768px) {
-      body {
-        padding: 20px;
-      }
-
       .wrapper {
         flex-direction: column;
-        background: rgba(255,255,255,0.9);
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-        max-width: 400px;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       }
 
       .logo-side {
         background: transparent;
-        padding: 20px;
+        padding: 10px;
       }
 
       .logo-side img {
         width: 80%;
-        max-width: 220px;
+        max-width: 250px;
+        margin: 0 auto;
       }
 
       .container {
         width: 100%;
-        padding: 25px 20px;
+        padding: 20px;
         background: transparent;
       }
 
       h2 {
         font-size: 1.8rem;
-        margin-bottom: 20px;
       }
 
       .input-group input,
@@ -171,9 +168,91 @@
         font-size: 17px;
       }
 
-      p, p a {
+      p {
         font-size: 15px;
       }
     }
   </style>
-</h
+</head>
+<body>
+  <div class="wrapper">
+    <div class="logo-side">
+      <img src="T-removebg-preview.png" alt="Takhleeq Logo">
+    </div>
+
+    <div class="container">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="userType">Login as</label>
+          <select id="userType" required>
+            <option value="">Select</option>
+            <option value="customer">Customer</option>
+            <option value="seller">Seller</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="example@mail.com" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Password" required>
+        </div>
+        <button class="btn" type="submit">Login</button>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+      </form>
+    </div>
+  </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("loginForm");
+  loginForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const userType = document.getElementById("userType").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    document.querySelectorAll(".error-msg").forEach(el => el.remove());
+    let valid = true;
+
+    if (!userType) {
+      showError("userType", "Please select a user type."); valid = false;
+    }
+    if (!email || !validateEmail(email)) {
+      showError("email", "Please enter a valid email."); valid = false;
+    }
+    if (!password || password.length < 6) {
+      showError("password", "Password must be at least 6 characters."); valid = false;
+    }
+    if (!valid) return;
+
+    const storedEmail = localStorage.getItem('userEmail');
+    const storedPassword = localStorage.getItem('userPassword');
+    if (email === storedEmail && password === storedPassword) {
+      Swal.fire("Success", "Login successful!", "success").then(() => {
+        window.location.href = "Home.php";
+      });
+    } else {
+      Swal.fire("Error", "Invalid email or password!", "error");
+    }
+  });
+
+  function showError(fieldId, message) {
+    const field = document.getElementById(fieldId);
+    const error = document.createElement("div");
+    error.className = "error-msg";
+    error.style.color = "red";
+    error.style.fontSize = "12px";
+    error.innerText = message;
+    field.parentNode.appendChild(error);
+  }
+  function validateEmail(email) {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+});
+</script>
+</body>
+</html>
